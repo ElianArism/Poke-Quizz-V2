@@ -1,0 +1,26 @@
+/* Importing Bootstrap SCSS file. */
+@import "bootstrap/scss/bootstrap";
+@import "./assets/pallette.scss";
+@import "./assets/fonts/fonts.scss";
+
+* {
+  box-sizing: border-box;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+body,
+html {
+  min-height: 100vh;
+  min-width: 100%;
+
+  background: rgba(249, 249, 248, 1) 50%;
+}
+
+li {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+}

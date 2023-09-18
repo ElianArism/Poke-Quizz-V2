@@ -1,0 +1,62 @@
+@import "../../../assets/pallette.scss";
+
+.container-fluid {
+  position: relative;
+  z-index: 10;
+  min-height: 90vh;
+}
+.title-container {
+  margin: auto;
+
+  & h1,
+  & p {
+    font-family: "Pokemon Solid", sans-serif;
+    letter-spacing: 3px;
+    color: #fcce00;
+    text-shadow: 5px 5px 2px #3a599f;
+  }
+}
+
+.video {
+  position: fixed;
+  z-index: 0;
+  top: 0;
+  left: -20%;
+  width: 140%;
+
+  filter: brightness(0.3);
+}
+
+.pokeball-img {
+  max-width: 300px;
+  max-height: 300px;
+  filter: drop-shadow(1px 1px 10px #333);
+}
+
+.separator {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 10px 1rem;
+}
+
+hr {
+  border-bottom: 1px solid black;
+  width: 40%;
+}
+
+.spin {
+  animation: spin 2s ease-in-out 1s alternate forwards infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0);
+  }
+  50% {
+    transform: rotate(180deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
