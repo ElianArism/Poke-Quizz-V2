@@ -1,24 +1,42 @@
-<section
-  class="container-fluid d-flex flex-column m-auto justify-content-center align-items-center"
->
-  <div class="title-container mb-3">
-    <h1 class="fs-1">Poke Quizz</h1>
-    <p class="fs-3">Found them all!</p>
+<section class="container-fluid">
+  <div class="row p-3 all-pokemons-bg">
+    <div class="col col-md-6 d-flex justify-content-center align-items-center">
+      <div class="title-container">
+        <h1 class="fs-1">Poke Quizz</h1>
+        <p class="fs-3">Found them all!</p>
+      </div>
+    </div>
+    <div class="col col-md-6 d-flex justify-content-center">
+      <picture class="w-75 d-flex justify-content-center align-items-center">
+        <img src="/assets/3d/pokeball.png" class="img-fluid pokeball-img" />
+      </picture>
+    </div>
   </div>
+  <div class="separator p-2">
+    <hr />
+    <app-pokeball-svg class="spin" />
+    <hr />
+  </div>
+  <div class="row bg-red p-3">
+    <div class="col">
+      <div class="game-description">
+        <p>
+          This game is all about your love for Pokémon and your ability to
+          recognize them. If you've ever watched the Pokémon animated series or
+          played the games, you're already on the right path! "Who's That
+          Pokémon" is a classic challenge that will challenge your memory and
+          Pokémon identification skills.
+        </p>
+        <div class="action-buttons my-4">
+          <button>Play</button>
 
-  <picture class="w-75 d-flex justify-content-center">
-    <img src="/assets/3d/pokeball.png" class="img-fluid pokeball-img" />
-  </picture>
+          <picture class="pokemon-img">
+            <img src="/assets/pikachu.png" alt="Pokemon img" />
+          </picture>
+
+          <button>Ranking</button>
+        </div>
+      </div>
+    </div>
+  </div>
 </section>
-<video
-  src="../../../assets/home-vid.mp4"
-  autoplay
-  [muted]="true"
-  class="video"
-></video>
-
-<!-- <div class="separator">
-  <hr />
-  <app-pokeball-svg class="spin" />
-  <hr />
-</div> -->
