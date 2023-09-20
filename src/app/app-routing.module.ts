@@ -8,6 +8,16 @@ const routes: Routes = [
       import('./pages/home/home.module').then((m) => m.HomeModule),
   },
   {
+    path: 'quizz',
+    loadChildren: () =>
+      import('./pages/quizz/quizz.module').then((m) => m.QuizzModule),
+  },
+  {
+    path: 'ranking',
+    loadChildren: () =>
+      import('./pages/ranking/ranking.module').then((m) => m.RankingModule),
+  },
+  {
     path: '',
     pathMatch: 'full',
     redirectTo: '/home',

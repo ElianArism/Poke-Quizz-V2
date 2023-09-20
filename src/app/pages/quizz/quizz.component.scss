@@ -1,0 +1,33 @@
+@import "../../../assets/pallette.scss";
+
+.pokemon-card {
+  width: 50%;
+  background-color: $white;
+  box-shadow: 5px 5px 16px #474747;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: black;
+
+  & .hidden-pokemon {
+    width: 80%;
+    min-width: 200px;
+    margin: auto;
+
+    & img {
+      object-fit: cover;
+      width: 100%;
+      height: 100%;
+    }
+  }
+
+  & .pokemon-description {
+    width: 80%;
+    text-align: center;
+    margin-top: 2rem !important;
+
+    & b {
+      font-size: 1.5rem;
+    }
+  }
+}
