@@ -4,8 +4,13 @@
       class="col d-flex flex-column align-items-center justify-content-center"
     >
       <div class="pokemon-card rounded p-3" #pokemonCard>
-        <picture class="hidden-pokemon">
-          <img src="/assets/1.png" alt="Hidden pokemon" #pokemonImg />
+        <picture class="pokemon-img-container">
+          <img
+            src="/assets/1.png"
+            class="hidden"
+            alt="Hidden pokemon"
+            #pokemonImg
+          />
         </picture>
 
         <div class="pokemon-description">
@@ -16,15 +21,15 @@
       </div>
 
       <ul class="options">
-        <li>Charizard</li>
-        <li>Bulbasaur</li>
-        <li>Pikachu</li>
+        <li class="glass-bg">Charizard</li>
+        <li class="glass-bg">Bulbasaur</li>
+        <li class="glass-bg">Pikachu</li>
       </ul>
     </div>
   </div>
 
   <div class="p-3">
-    <div class="row score-container p-3 rounded">
+    <div class="row p-3 glass-bg">
       <div class="col col-md-6">
         <div>
           <b class="fs-5">Trainer</b>

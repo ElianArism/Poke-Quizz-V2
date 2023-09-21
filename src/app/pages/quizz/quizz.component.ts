@@ -31,11 +31,11 @@ export class QuizzComponent implements AfterViewInit {
         console.log(
           `linear-gradient(to top, ${colors[1]}, ${colors[2]}, ${colors[3]})`
         );
-        this.r2.setStyle(
-          this.pokemonCard.nativeElement,
-          'background',
-          `linear-gradient(to top, ${colors[1]}, ${colors[2]}, ${colors[3]})`
-        );
+        // this.r2.setStyle(
+        //   this.pokemonCard.nativeElement,
+        //   'background',
+        //   `linear-gradient(to top, ${colors[1]}, ${colors[2]}, ${colors[3]})`
+        // );
       })
       .catch(console.log);
   }

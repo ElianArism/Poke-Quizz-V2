@@ -1,6 +1,5 @@
 import { Component, OnInit, inject } from '@angular/core';
-import { NavigationEnd, Router } from '@angular/router';
-import { filter } from 'rxjs';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -12,13 +11,13 @@ export class AppComponent implements OnInit {
   public bg = 'bg-red';
 
   ngOnInit(): void {
-    this.router.events
-      .pipe(filter((e) => e instanceof NavigationEnd))
-      .subscribe((navigationObj) => {
-        this.bg =
-          (navigationObj as NavigationEnd).url === '/home'
-            ? 'bg-red'
-            : 'bg-white';
-      });
+    // this.router.events
+    //   .pipe(filter((e) => e instanceof NavigationEnd))
+    //   .subscribe((navigationObj) => {
+    //     this.bg =
+    //       (navigationObj as NavigationEnd).url === '/home'
+    //         ? 'bg-red'
+    //         : 'bg-white';
+    //   });
   }
 }
