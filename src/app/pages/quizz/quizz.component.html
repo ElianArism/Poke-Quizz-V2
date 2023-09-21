@@ -1,9 +1,11 @@
-<section class="container-fluid py-5 px-4">
-  <div class="row">
-    <div class="col d-flex justify-content-center">
-      <div class="pokemon-card rounded p-3">
+<section class="container-fluid d-flex flex-column justify-content-between">
+  <div class="row py-3 px-4">
+    <div
+      class="col d-flex flex-column align-items-center justify-content-center"
+    >
+      <div class="pokemon-card rounded p-3" #pokemonCard>
         <picture class="hidden-pokemon">
-          <img src="/assets/1.png" alt="Hidden pokemon" />
+          <img src="/assets/1.png" alt="Hidden pokemon" #pokemonImg />
         </picture>
 
         <div class="pokemon-description">
@@ -12,16 +14,29 @@
           <p>Description</p>
         </div>
       </div>
-    </div>
-  </div>
 
-  <div class="row">
-    <div class="col">
       <ul class="options">
         <li>Charizard</li>
         <li>Bulbasaur</li>
         <li>Pikachu</li>
       </ul>
+    </div>
+  </div>
+
+  <div class="p-3">
+    <div class="row score-container p-3 rounded">
+      <div class="col col-md-6">
+        <div>
+          <b class="fs-5">Trainer</b>
+          <hr />
+          <p class="fs-6">John Doe</p>
+        </div>
+
+        <div class="mt-5 d-flex justify-content-center">
+          <p class="fs-5"><b>Score: </b> <span>10</span></p>
+        </div>
+      </div>
+      <div class="col col-md-6"></div>
     </div>
   </div>
 </section>

@@ -9,8 +9,6 @@
   & .header,
   & .content,
   & .footer {
-    background-color: $red;
-    color: $white;
     width: 100%;
   }
 
@@ -21,4 +19,14 @@
   & .footer {
     padding: 10px;
   }
+}
+
+.bg-red {
+  background-color: $red;
+  color: $white;
+}
+
+.bg-white {
+  background-color: $white;
+  color: $black;
 }

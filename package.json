@@ -24,6 +24,7 @@
     "@popperjs/core": "^2.11.6",
     "@types/three": "^0.156.0",
     "bootstrap": "^5.2.3",
+    "color.js": "^1.2.0",
     "rxjs": "~7.8.0",
     "three": "^0.156.1",
     "tslib": "^2.3.0",
