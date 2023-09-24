@@ -21,6 +21,7 @@
     "@ng-bootstrap/ng-bootstrap": "^15.1.1",
     "@ngrx/effects": "^16.2.0",
     "@ngrx/store": "^16.2.0",
+    "@ngrx/store-devtools": "^16.2.0",
     "@popperjs/core": "^2.11.6",
     "@types/three": "^0.156.0",
     "bootstrap": "^5.2.3",

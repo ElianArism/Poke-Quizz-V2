@@ -6,7 +6,10 @@ import {
   ViewChild,
   inject,
 } from '@angular/core';
+import { Store } from '@ngrx/store';
 import * as color from 'color.js';
+import { PokemonActions } from 'src/app/store/actions/pokemon.actions';
+import { AppState } from 'src/app/store/app,store';
 @Component({
   selector: 'app-quizz',
   templateUrl: './quizz.component.html',
@@ -19,6 +22,8 @@ export class QuizzComponent implements AfterViewInit {
   private pokemonCard!: ElementRef<HTMLElement>;
 
   private r2: Renderer2 = inject(Renderer2);
+
+  private store: Store<AppState> = inject(Store);
 
   ngAfterViewInit(): void {
     color
@@ -38,5 +43,7 @@ export class QuizzComponent implements AfterViewInit {
         // );
       })
       .catch(console.log);
+
+    this.store.dispatch(PokemonActions.startLoadingPokemons());
   }
 }
