@@ -8,7 +8,7 @@ import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { AppReducer } from './store/app,store';
+import { AppReducer } from './store/app.store';
 import { PokemonEffects } from './store/effects/pokemon.effects';
 
 @NgModule({

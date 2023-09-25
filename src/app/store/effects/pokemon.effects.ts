@@ -23,4 +23,11 @@ export class PokemonEffects {
       )
     )
   );
+
+  setCurrentPokemon$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(PokemonActions.pokemonsLoaded),
+      switchMap(async () => PokemonActions.setCurrentPokemon())
+    )
+  );
 }
