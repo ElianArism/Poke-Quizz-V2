@@ -12,18 +12,12 @@
             #pokemonImg
           />
         </picture>
-
-        <div class="pokemon-description">
-          <b> Pikachu </b>
-          <hr />
-          <p>Description</p>
-        </div>
       </div>
 
       <ul class="options">
-        <li class="glass-bg">Charizard</li>
-        <li class="glass-bg">Bulbasaur</li>
-        <li class="glass-bg">Pikachu</li>
+        <li class="glass-bg" (click)="chooseOption('Charizard')">Charizard</li>
+        <li class="glass-bg" (click)="chooseOption('Bulbasaur')">Bulbasaur</li>
+        <li class="glass-bg" (click)="chooseOption('Pikachu')">Pikachu</li>
       </ul>
     </div>
   </div>

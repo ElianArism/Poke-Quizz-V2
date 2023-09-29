@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, lastValueFrom } from 'rxjs';
 import { Pokemon } from '../interfaces/pokemon.interface';
 
 @Injectable({
@@ -12,5 +12,9 @@ export class PokemonApiService {
 
   getAllPokemons(): Observable<Pokemon[]> {
     return this.http.get<Pokemon[]>(`${this.url}?limit=100000&offset=0`);
+  }
+
+  getPokemonInfo(name: string): Promise<Pokemon> {
+    return lastValueFrom(this.http.get<Pokemon>(`${this.url}/${name}`));
   }
 }

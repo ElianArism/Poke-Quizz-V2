@@ -4,8 +4,7 @@
   // height: 95vh;
 
   & b,
-  & p,
-  & span {
+  & p {
     color: $black;
   }
 }
@@ -47,6 +46,18 @@
       font-size: 1.5rem;
       text-shadow: 1px 1px 3px #313131a3;
     }
+  }
+
+  @media screen and (max-width: 968px) {
+    width: 40%;
+  }
+
+  @media screen and (max-width: 768px) {
+    width: 60%;
+  }
+
+  @media screen and (max-width: 526px) {
+    width: 80%;
   }
 }
 

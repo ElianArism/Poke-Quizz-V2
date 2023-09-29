@@ -13,12 +13,13 @@ import { PokemonEffects } from './store/effects/pokemon.effects';
 
 @NgModule({
   declarations: [AppComponent],
+  providers: [],
+  bootstrap: [AppComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
     NgbModule,
     HttpClientModule,
-
     StoreModule.forRoot(AppReducer),
     EffectsModule.forRoot([PokemonEffects]),
     StoreDevtoolsModule.instrument({
@@ -30,7 +31,5 @@ import { PokemonEffects } from './store/effects/pokemon.effects';
       connectOutsideZone: true,
     }),
   ],
-  providers: [],
-  bootstrap: [AppComponent],
 })
 export class AppModule {}
