@@ -1,14 +1,16 @@
-import { ElementRef, Injectable, Renderer2, inject } from '@angular/core';
+import { ElementRef, Injectable, Renderer2 } from '@angular/core';
 import { Subject, Subscription } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ChangeBackgroundService {
-  private r2: Renderer2 = inject(Renderer2);
-  changeBackgroundColorEvent$: Subject<string> = new Subject<string>();
+  private r2!: Renderer2;
+  private changeBackgroundColorEvent$: Subject<string> = new Subject<string>();
 
-  constructor() {}
+  constructor() {
+    // this.r2 = renderer;
+  }
 
   sendChangeBackgroundColorEvent(color: string): void {
     this.changeBackgroundColorEvent$.next(color);

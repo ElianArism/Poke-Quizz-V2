@@ -3,7 +3,6 @@ import {
   Component,
   ElementRef,
   OnInit,
-  Renderer2,
   ViewChild,
   inject,
 } from '@angular/core';
@@ -13,6 +12,7 @@ import { Observable } from 'rxjs';
 import { Pokemon } from 'src/app/interfaces/pokemon.interface';
 import { PokemonApiService } from 'src/app/services/pokemon-api.service';
 import { PokemonActions } from 'src/app/store/actions/pokemon.actions';
+import { UIActions } from 'src/app/store/actions/ui.actions';
 import { AppState } from 'src/app/store/app.store';
 import { PokemonState } from 'src/app/store/reducers/pokemon.reducer';
 import { pokemonsSelector } from 'src/app/store/selectors/pokemon.selector';
@@ -33,13 +33,13 @@ export class QuizzComponent implements OnInit, AfterViewInit {
   @ViewChild('pokemonCard')
   private pokemonCard!: ElementRef<HTMLElement>;
 
-  private r2: Renderer2 = inject(Renderer2);
-
   pokemonsInQuizz!: {
     pokemonToFind: Pokemon;
     firstExtra: Pokemon;
     secondExtra: Pokemon;
   };
+
+  constructor() {}
 
   ngOnInit(): void {
     this.store.dispatch(PokemonActions.startLoadingPokemons());
@@ -117,15 +117,15 @@ export class QuizzComponent implements OnInit, AfterViewInit {
       }
     );
 
-    //  console.log(colors);
     //  console.log(
     //    `linear-gradient(to top, ${colors[1]}, ${colors[2]}, ${colors[3]})`
     //  );
 
-    this.r2.setStyle(
-      this.pokemonCard.nativeElement,
-      'background',
-      `linear-gradient(to top, ${pokemonColors[1]}, ${pokemonColors[2]}, ${pokemonColors[3]})`
+    this.store.dispatch(
+      UIActions.changeAppBackgroundColor({
+        color: `linear-gradient(to top, ${pokemonColors[1]}, ${pokemonColors[2]}, ${pokemonColors[3]})`,
+        bgType: 'custom',
+      })
     );
   }
 }

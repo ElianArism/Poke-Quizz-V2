@@ -4,6 +4,9 @@
   display: flex;
   flex-direction: column;
   min-height: 100vh;
+  position: relative;
+  background-color: transparent;
+  z-index: 1;
 
   &,
   & .header,
@@ -14,13 +17,6 @@
 
   .content {
     flex: 1;
-    background: rgb(241, 12, 12);
-    background: linear-gradient(
-      0,
-      rgba(241, 12, 12, 1) 0%,
-      rgba(243, 243, 243, 1) 100%
-    );
-    // background: linear-gradient(to top, #ffdc28, #dcb428, #281414);
   }
 
   & .footer {
@@ -28,9 +24,15 @@
   }
 }
 
-.bg-red {
-  background-color: $red;
-  color: $white;
+.default-bg,
+.pokemon-discovered-bg {
+  position: absolute;
+  width: 100%;
+  top: 0;
+  opacity: 0;
+  transition: opacity 500ms !important;
+  bottom: 0;
+  z-index: -1;
 }
 
 .bg-white {
