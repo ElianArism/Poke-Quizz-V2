@@ -1,6 +1,5 @@
 @import "../../../assets/pallette.scss";
 @import "../../../assets/animations.scss";
-// @import "../../../assets/fonts/fonts.scss";
 
 b,
 p {
@@ -8,7 +7,11 @@ p {
 }
 
 .quizz-container {
-  min-height: 330px;
+  min-height: 382px;
+}
+
+.container-fluid {
+  height: 100vh;
 }
 
 .pokemon-text {

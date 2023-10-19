@@ -1,56 +1,57 @@
-<section class="container-fluid d-flex flex-column justify-content-between">
-  <div class="row py-3 px-4">
-    <div
-      class="col d-flex flex-column align-items-center justify-content-center quizz-container"
-    >
-      <div class="pokemon-card rounded" #pokemonCard>
-        <picture class="pokemon-img-container">
-          <img
-            *ngIf="pokemonToFind"
-            [src]="pokemonToFind.sprites.front_default"
-            [class]="pokemonRevealed ? 'reveal' : 'fade-in hidden'"
-            alt="Hidden pokemon"
-            #pokemonImg
-          />
-        </picture>
-      </div>
-
-      <ul class="options fade-in" *ngIf="pokemonToFind && !pokemonRevealed">
-        <li
-          *ngFor="let pokemon of pokemonsInQuizz"
-          class="glass-bg text-capitalize"
-          (click)="chooseOption(pokemon.name)"
-        >
-          {{ pokemon.name }}
-        </li>
-      </ul>
-
-      <div>
-        <p
-          [class.d-none]="!pokemonRevealed"
-          class="pokemon-text fade-in"
-          [style]="'color:' + prominentColor"
-        >
-          It's {{ pokemonToFind.name }} !
-        </p>
-      </div>
+<section
+  class="container-fluid d-flex justify-content-center align-items-center"
+>
+  <div
+    class="d-flex flex-column w-75 align-items-center justify-content-center quizz-container"
+  >
+    <div class="pokemon-card rounded" #pokemonCard>
+      <picture class="pokemon-img-container">
+        <img
+          *ngIf="pokemonToFind"
+          [src]="pokemonToFind.sprites.front_default"
+          [class]="pokemonRevealed ? 'reveal' : 'fade-in hidden'"
+          alt="Hidden pokemon"
+          #pokemonImg
+        />
+      </picture>
     </div>
-  </div>
-  <div class="mx-auto text-center mt-4 w-75">
-    <p
-      [class.d-none]="!pokemonRevealed"
-      class="pokemon-text fade-in"
-      [style]="'color:' + prominentColor"
-    >
-      Trainer: John Doe
-    </p>
-    <p
-      [class.d-none]="!pokemonRevealed"
-      class="pokemon-text fade-in"
-      [style]="'color:' + prominentColor"
-    >
-      Score: 10
-    </p>
+
+    <ul class="options fade-in" *ngIf="pokemonToFind && !pokemonRevealed">
+      <li
+        *ngFor="let pokemon of pokemonsInQuizz"
+        class="glass-bg text-capitalize"
+        (click)="chooseOption(pokemon.name)"
+      >
+        {{ pokemon.name }}
+      </li>
+    </ul>
+
+    <div>
+      <p
+        [class.d-none]="!pokemonRevealed"
+        class="pokemon-text fade-in"
+        [style]="'color:' + prominentColor"
+      >
+        It's {{ pokemonToFind.name }} !
+      </p>
+    </div>
+
+    <div class="mx-auto text-center mt-4 w-75">
+      <p
+        [class.d-none]="!pokemonRevealed"
+        class="pokemon-text fade-in"
+        [style]="'color:' + prominentColor"
+      >
+        Trainer: John Doe
+      </p>
+      <p
+        [class.d-none]="!pokemonRevealed"
+        class="pokemon-text fade-in"
+        [style]="'color:' + prominentColor"
+      >
+        Score: 10
+      </p>
+    </div>
   </div>
 </section>
 
