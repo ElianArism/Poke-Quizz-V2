@@ -1,5 +1,4 @@
 import {
-  AfterViewInit,
   Component,
   ElementRef,
   OnInit,
@@ -21,32 +20,28 @@ import { pokemonsSelector } from 'src/app/store/selectors/pokemon.selector';
   templateUrl: './quizz.component.html',
   styleUrls: ['./quizz.component.scss'],
 })
-export class QuizzComponent implements OnInit, AfterViewInit {
+export class QuizzComponent implements OnInit {
   private readonly store: Store<AppState> = inject(Store);
-  private readonly pokemonService: PokemonApiService =
-    inject(PokemonApiService);
   private readonly pokemonsState: Observable<PokemonState> =
     this.store.select(pokemonsSelector);
+
+  private readonly pokemonService: PokemonApiService =
+    inject(PokemonApiService);
 
   @ViewChild('pokemonImg')
   private pokemonImg!: ElementRef<HTMLImageElement>;
   @ViewChild('pokemonCard')
   private pokemonCard!: ElementRef<HTMLElement>;
 
-  pokemonsInQuizz!: {
-    pokemonToFind: Pokemon;
-    firstExtra: Pokemon;
-    secondExtra: Pokemon;
-  };
-
-  constructor() {}
+  prominentColor: any = 'white';
+  pokemonToFind!: Pokemon;
+  pokemonsInQuizz: Pokemon[] = [];
+  pokemonRevealed: boolean = false;
 
   ngOnInit(): void {
     this.store.dispatch(PokemonActions.startLoadingPokemons());
     this.listenPokemonStateChanges();
   }
-
-  ngAfterViewInit(): void {}
 
   private listenPokemonStateChanges(): void {
     this.pokemonsState.subscribe(async (state) => {
@@ -62,11 +57,20 @@ export class QuizzComponent implements OnInit, AfterViewInit {
         amountLeftToDiscover: state.amountLeftToDiscover,
         pokemons: state.pokemons,
       });
+      this.pokemonToFind = currentPokemonInfo;
+      const idx = Math.round(Math.random() * 2);
 
-      this.pokemonsInQuizz = {
-        ...extras,
-        pokemonToFind: currentPokemonInfo,
-      };
+      this.pokemonsInQuizz[idx] = state.currentPokemon;
+      if (idx === 1) {
+        this.pokemonsInQuizz[idx + 1] = extras.firstExtra;
+        this.pokemonsInQuizz[idx - 1] = extras.secondExtra;
+      } else if (idx === 2) {
+        this.pokemonsInQuizz[idx - 1] = extras.firstExtra;
+        this.pokemonsInQuizz[idx - 2] = extras.secondExtra;
+      } else {
+        this.pokemonsInQuizz[idx + 1] = extras.firstExtra;
+        this.pokemonsInQuizz[idx + 2] = extras.secondExtra;
+      }
     });
   }
 
@@ -104,10 +108,7 @@ export class QuizzComponent implements OnInit, AfterViewInit {
   }
 
   async chooseOption(option: string): Promise<void> {
-    // if (option !== this.pokemonsInQuizz.pokemonToFind.name) {
-    if (option !== 'Pikachu') {
-      return;
-    }
+    if (option !== this.pokemonToFind.name) return;
 
     const pokemonColors = await color.prominent(
       this.pokemonImg.nativeElement.src,
@@ -117,13 +118,14 @@ export class QuizzComponent implements OnInit, AfterViewInit {
       }
     );
 
-    //  console.log(
-    //    `linear-gradient(to top, ${colors[1]}, ${colors[2]}, ${colors[3]})`
-    //  );
+    this.prominentColor = pokemonColors[3];
+
+    this.pokemonRevealed = true;
 
     this.store.dispatch(
       UIActions.changeAppBackgroundColor({
-        color: `linear-gradient(to top, ${pokemonColors[1]}, ${pokemonColors[2]}, ${pokemonColors[3]})`,
+        // color: `linear-gradient(to top, ${pokemonColors[1]}, ${pokemonColors[2]}, ${pokemonColors[3]})`,
+        color: `linear-gradient(to top, ${pokemonColors[1]},  ${pokemonColors[3]})`,
         bgType: 'custom',
       })
     );

@@ -1,29 +1,60 @@
 <section class="container-fluid d-flex flex-column justify-content-between">
   <div class="row py-3 px-4">
     <div
-      class="col d-flex flex-column align-items-center justify-content-center"
+      class="col d-flex flex-column align-items-center justify-content-center quizz-container"
     >
-      <div class="pokemon-card rounded p-3" #pokemonCard>
+      <div class="pokemon-card rounded" #pokemonCard>
         <picture class="pokemon-img-container">
           <img
-            src="/assets/1.png"
-            class="hidden"
+            *ngIf="pokemonToFind"
+            [src]="pokemonToFind.sprites.front_default"
+            [class]="pokemonRevealed ? 'reveal' : 'fade-in hidden'"
             alt="Hidden pokemon"
             #pokemonImg
           />
         </picture>
       </div>
 
-      <ul class="options">
-        <li class="glass-bg" (click)="chooseOption('Charizard')">Charizard</li>
-        <li class="glass-bg" (click)="chooseOption('Bulbasaur')">Bulbasaur</li>
-        <li class="glass-bg" (click)="chooseOption('Pikachu')">Pikachu</li>
+      <ul class="options fade-in" *ngIf="pokemonToFind && !pokemonRevealed">
+        <li
+          *ngFor="let pokemon of pokemonsInQuizz"
+          class="glass-bg text-capitalize"
+          (click)="chooseOption(pokemon.name)"
+        >
+          {{ pokemon.name }}
+        </li>
       </ul>
+
+      <div>
+        <p
+          [class.d-none]="!pokemonRevealed"
+          class="pokemon-text fade-in"
+          [style]="'color:' + prominentColor"
+        >
+          It's {{ pokemonToFind.name }} !
+        </p>
+      </div>
     </div>
   </div>
+  <div class="mx-auto text-center mt-4 w-75">
+    <p
+      [class.d-none]="!pokemonRevealed"
+      class="pokemon-text fade-in"
+      [style]="'color:' + prominentColor"
+    >
+      Trainer: John Doe
+    </p>
+    <p
+      [class.d-none]="!pokemonRevealed"
+      class="pokemon-text fade-in"
+      [style]="'color:' + prominentColor"
+    >
+      Score: 10
+    </p>
+  </div>
+</section>
 
-  <div class="mx-auto mt-4 w-75">
-    <div class="row p-3 glass-bg">
+<!-- <div [class]="pokemonRevealed ? 'row p-3 revealed-bg' : 'row p-3 glass-bg'">
       <div class="col col-md-6">
         <div>
           <b class="fs-5">Trainer</b>
@@ -32,10 +63,8 @@
         </div>
 
         <div class="mt-5 d-flex justify-content-center">
-          <p class="fs-5"><b>Score: </b> <span>10</span></p>
+          <p class="fs-5">Score: 10</p>
         </div>
       </div>
       <div class="col col-md-6"></div>
-    </div>
-  </div>
-</section>
+    </div> -->

@@ -1,12 +1,24 @@
 @import "../../../assets/pallette.scss";
+@import "../../../assets/animations.scss";
+// @import "../../../assets/fonts/fonts.scss";
 
-.container-fluid {
-  // height: 95vh;
+b,
+p {
+  color: $black;
+}
 
-  & b,
-  & p {
-    color: $black;
-  }
+.quizz-container {
+  min-height: 330px;
+}
+
+.pokemon-text {
+  font-size: 1.5rem;
+  letter-spacing: 2px;
+  text-transform: capitalize;
+  font-family: "Pokemon Solid", sans-serif;
+  text-shadow: 2px 0 #fff, -2px 0 #fff, 0 2px #fff, 0 -2px #fff, 1px 1px #fff,
+    -1px -1px #fff, 1px -1px #fff, -1px 1px #fff,
+    0px 0px 1rem rgba(0, 0, 0, 0.5);
 }
 
 .pokemon-card {
@@ -16,8 +28,8 @@
   align-items: center;
 
   & .pokemon-img-container {
-    width: 80%;
-    min-width: 200px;
+    width: 250px;
+    height: 250px;
     margin: auto;
 
     & img {
@@ -25,13 +37,19 @@
       width: 100%;
       height: 100%;
     }
+
+    @media screen and (max-width: 762px) {
+      width: 80%;
+    }
   }
 
   & .reveal {
+    transition: filter 300ms;
     filter: drop-shadow(1px 1px 10px #333);
   }
 
   & .hidden {
+    transition: filter 300ms;
     filter: brightness(0%);
   }
 
@@ -77,4 +95,13 @@
     user-select: none;
     cursor: pointer;
   }
+}
+
+.revealed-bg {
+  background: rgba(255, 255, 255, 0.25);
+  border-radius: 16px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
 }

@@ -32,15 +32,12 @@ export class AppComponent implements AfterViewInit, OnDestroy {
 
   ngAfterViewInit(): void {
     this.subs = this.uiSelector.subscribe(({ backgroundColor, bgType }) => {
-      console.log(bgType);
       const isDefaultBg = bgType === 'default';
-      console.log(isDefaultBg);
       const element = isDefaultBg
         ? this.defaultBg.nativeElement
         : this.pokemonDiscoveredBg.nativeElement;
-      console.log(element);
 
-      this.r2.setStyle(element, 'background', backgroundColor);
+      this.r2.setStyle(element, 'background', `${backgroundColor} no-repeat`);
       this.r2.setStyle(element, 'opacity', '1');
 
       if (isDefaultBg) {
