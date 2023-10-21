@@ -30,10 +30,8 @@ export class QuizzComponent implements OnInit {
 
   @ViewChild('pokemonImg')
   private pokemonImg!: ElementRef<HTMLImageElement>;
-  @ViewChild('pokemonCard')
-  private pokemonCard!: ElementRef<HTMLElement>;
 
-  prominentColor: any = 'white';
+  prominentColor: unknown = '#333';
   pokemonToFind!: Pokemon;
   pokemonsInQuizz: Pokemon[] = [];
   pokemonRevealed: boolean = false;
