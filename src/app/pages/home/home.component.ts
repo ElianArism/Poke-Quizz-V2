@@ -8,9 +8,14 @@ import { FirebaseService } from 'src/app/services/firebase.service';
 })
 export class HomeComponent implements OnInit {
   private firebaseService: FirebaseService = inject(FirebaseService);
+  showRegisterTrainerComponent: boolean = false;
   constructor() {}
 
   ngOnInit(): void {
     console.log('On init!');
+  }
+
+  showRegisterTrainer() {
+    this.showRegisterTrainerComponent = true;
   }
 }
