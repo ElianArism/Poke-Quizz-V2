@@ -97,6 +97,7 @@ hr {
   .action-buttons {
     display: flex;
     width: 100%;
+    align-items: center;
     justify-content: space-around;
 
     & button {
@@ -108,8 +109,9 @@ hr {
       text-shadow: 5px 5px 2px #3a599f;
       background-color: transparent;
       border-radius: 10px;
-
+      padding: 0;
       transition: transform 300ms;
+
       &:hover {
         transition: transform 300ms;
         transform: scale(1.1);

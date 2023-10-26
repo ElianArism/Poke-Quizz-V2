@@ -1,0 +1,13 @@
+.bg-card {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  filter: brightness(0.9), blur(0.9);
+  width: 100%;
+  z-index: 10;
+}
+
+.register-trainer {
+  position: relative;
+  z-index: 20;
+}

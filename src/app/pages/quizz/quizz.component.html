@@ -53,19 +53,21 @@
       </p>
     </div>
   </div>
+  <div class="mx-auto d-flex align-items-center justify-content-around w-75">
+    <div class="d-flex justify-content-center align-items-center flex-column">
+      <img
+        src="../../../assets/pikachu.png"
+        class="img-fluid rounded m-1"
+        alt="Trainer icon"
+        width="50"
+        height="50"
+      />
+      <p class="pokemon-text fade-in m-0" [style]="'color:' + prominentColor">
+        John Doe
+      </p>
+    </div>
+    <p class="pokemon-text fade-in m-0" [style]="'color:' + prominentColor">
+      Score: 10
+    </p>
+  </div>
 </section>
-
-<!-- <div [class]="pokemonRevealed ? 'row p-3 revealed-bg' : 'row p-3 glass-bg'">
-      <div class="col col-md-6">
-        <div>
-          <b class="fs-5">Trainer</b>
-          <hr />
-          <p class="fs-6">John Doe</p>
-        </div>
-
-        <div class="mt-5 d-flex justify-content-center">
-          <p class="fs-5">Score: 10</p>
-        </div>
-      </div>
-      <div class="col col-md-6"></div>
-    </div> -->

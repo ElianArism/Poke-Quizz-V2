@@ -6,6 +6,10 @@ p {
   color: $black;
 }
 
+.container-fluid {
+  height: 90vh;
+}
+
 .quizz-container {
   min-height: 382px;
 }
@@ -15,7 +19,7 @@ p {
 }
 
 .pokemon-text {
-  font-size: 1.5rem;
+  font-size: 1rem;
   letter-spacing: 2px;
   text-transform: capitalize;
   font-family: "Pokemon Solid", sans-serif;
