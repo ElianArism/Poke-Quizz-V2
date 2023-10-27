@@ -1,5 +1,4 @@
-import { Component, OnInit, inject } from '@angular/core';
-import { FirebaseService } from 'src/app/services/firebase.service';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-home',
@@ -7,8 +6,8 @@ import { FirebaseService } from 'src/app/services/firebase.service';
   styleUrls: ['./home.component.scss'],
 })
 export class HomeComponent implements OnInit {
-  private firebaseService: FirebaseService = inject(FirebaseService);
   showRegisterTrainerComponent: boolean = false;
+
   constructor() {}
 
   ngOnInit(): void {

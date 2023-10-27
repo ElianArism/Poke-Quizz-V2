@@ -1,5 +1,8 @@
-<div class="bacgkround-card">
-  <article
+<div class="bacgkround-card fade-in">
+  <form
+    (ngSubmit)="registerTrainer()"
+    id="form"
+    [formGroup]="registerForm"
     class="register-trainer card d-flex justify-content-center m-auto rounded p-3"
   >
     <div class="w-75 text-center mx-auto">
@@ -7,27 +10,117 @@
     </div>
 
     <div class="w-100">
-      <div class="my-5">
+      <div class="my-3">
         <input
           type="text"
           name="trainer-name"
           placeholder="Trainer name"
           class="form-input"
+          formControlName="trainerName"
         />
+        <div class="form-error-container">
+          <ng-container
+            [ngTemplateOutlet]="invalidInput"
+            [ngTemplateOutletContext]="{
+              controlName: 'trainerName',
+              validatorName: 'required',
+              errMessage: 'is required'
+            }"
+          ></ng-container>
+          <ng-container
+            [ngTemplateOutlet]="invalidInput"
+            [ngTemplateOutletContext]="{
+              controlName: 'trainerName',
+              validatorName: 'minlength',
+              errMessage: 'must have 3 characters at least'
+            }"
+          ></ng-container>
+          <ng-container
+            [ngTemplateOutlet]="invalidInput"
+            [ngTemplateOutletContext]="{
+              controlName: 'trainerName',
+              validatorName: 'maxlength',
+              errMessage: 'accepts 20 characters as maximum value'
+            }"
+          ></ng-container>
+        </div>
       </div>
-      <div class="my-5">
+      <div class="my-3">
         <input
-          type="text"
+          type="password"
           placeholder="Password"
           class="form-input"
           name="trainer-password"
+          formControlName="password"
         />
+        <div class="form-error-container">
+          <ng-container
+            [ngTemplateOutlet]="invalidInput"
+            [ngTemplateOutletContext]="{
+              controlName: 'password',
+              validatorName: 'required',
+              errMessage: 'is required'
+            }"
+          ></ng-container>
+          <ng-container
+            [ngTemplateOutlet]="invalidInput"
+            [ngTemplateOutletContext]="{
+              controlName: 'password',
+              validatorName: 'minlength',
+              errMessage: 'must have 3 characters at least'
+            }"
+          ></ng-container>
+          <ng-container
+            [ngTemplateOutlet]="invalidInput"
+            [ngTemplateOutletContext]="{
+              controlName: 'password',
+              validatorName: 'maxlength',
+              errMessage: 'accepts 20 characters as maximum value'
+            }"
+          ></ng-container>
+        </div>
       </div>
 
       <div class="w-100 d-flex justify-content-around mt-5">
-        <button class="pokemon-letter-style button-register">Register</button>
-        <button class="pokemon-letter-style button-register">No thanks!</button>
+        <button
+          class="pokemon-letter-style button-register"
+          [class.disabled-btn]="registerForm.invalid"
+          [disabled]="registerForm.invalid"
+          type="submit"
+        >
+          Register
+        </button>
+
+        <button
+          class="pokemon-letter-style button-register"
+          (click)="router.navigateByUrl('/quizz')"
+        >
+          No thanks!
+        </button>
       </div>
     </div>
-  </article>
+  </form>
 </div>
+
+<ng-container>
+  <span class="form-text"></span>
+</ng-container>
+
+<ng-template
+  #invalidInput
+  let-controlName="controlName"
+  let-valdidatorName="validatorName"
+  let-errMessage="errMessage"
+>
+  <ng-container
+    *ngIf="
+      (registerForm.get(controlName)?.dirty ||
+        registerForm.get(controlName)?.touched) &&
+      registerForm.get(controlName)?.hasError(valdidatorName)
+    "
+  >
+    <span class="form-text text-danger">
+      <span class="text-capitalize">{{ controlName }}</span> {{ errMessage }}
+    </span>
+  </ng-container>
+</ng-template>

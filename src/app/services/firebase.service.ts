@@ -4,6 +4,7 @@ import { FirebaseApp, initializeApp } from 'firebase/app';
 import {
   CollectionReference,
   DocumentData,
+  QueryDocumentSnapshot,
   collection,
   doc,
   getDocs,
@@ -49,11 +50,11 @@ export class FirebaseService {
     imgLogo?: string;
     password: string;
     score: number;
-  }) {
+  }): Promise<void> {
     try {
       const trainerDoc = await this.getTrainerByUsername(trainer.trainerName);
       if (trainerDoc.exists()) {
-        return;
+        throw new Error('Trainer name already exists, choose another');
       }
       await setDoc(doc(this.collection), trainer);
     } catch (error: any) {
@@ -61,7 +62,10 @@ export class FirebaseService {
     }
   }
 
-  async updateTrainer(username: string, trainer: Partial<ITrainer>) {
+  async updateTrainer(
+    username: string,
+    trainer: Partial<ITrainer>
+  ): Promise<void> {
     try {
       const trainerDoc = await this.getTrainerByUsername(username);
       await updateDoc(trainerDoc.ref, trainer);
@@ -70,13 +74,14 @@ export class FirebaseService {
     }
   }
 
-  async getTrainerByUsername(username: string): Promise<any> {
+  async getTrainerByUsername(
+    username: string
+  ): Promise<QueryDocumentSnapshot<DocumentData>> {
     try {
       const trainerQuery = query(
         this.collection,
         where('trainerName', '==', username)
       );
-
       const queryResults = await getDocs(trainerQuery);
 
       if (!queryResults.docs[0]?.exists()) {

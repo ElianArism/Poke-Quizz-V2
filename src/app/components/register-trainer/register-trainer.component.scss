@@ -1,4 +1,5 @@
 @import "../../../assets/pallette.scss";
+@import "../../../assets/animations.scss";
 
 .bacgkround-card {
   top: 0;
@@ -54,5 +55,18 @@
       color: #696969;
       letter-spacing: 1px;
     }
+  }
+
+  & .form-error-container {
+    height: 32px;
+  }
+
+  & .button-register {
+    transition: color 300ms;
+  }
+
+  & .disabled-btn {
+    color: gray !important;
+    transition: color 300ms;
   }
 }
