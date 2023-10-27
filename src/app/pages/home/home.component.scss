@@ -1,4 +1,5 @@
 @import "../../../assets/pallette.scss";
+@import "../../../assets/animations.scss";
 
 .container-fluid {
   position: relative;
@@ -15,16 +16,6 @@
   background-attachment: fixed;
   height: 400px;
   background-repeat: no-repeat;
-}
-
-.title-container {
-  & h1,
-  & p {
-    font-family: "Pokemon Solid", sans-serif;
-    letter-spacing: 3px;
-    color: #fcce00;
-    text-shadow: 5px 5px 2px #3a599f, 1px 1px 10px #000000;
-  }
 }
 
 .pokeball-img {
@@ -105,8 +96,8 @@ hr {
       font-size: 1.5rem;
       border: none;
       color: #fcce00;
-      letter-spacing: 2px;
       text-shadow: 5px 5px 2px #3a599f;
+      letter-spacing: 2px;
       background-color: transparent;
       border-radius: 10px;
       padding: 0;

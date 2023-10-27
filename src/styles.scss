@@ -32,3 +32,16 @@ a {
   -webkit-backdrop-filter: blur(5px);
   border: 1px solid rgba(255, 255, 255, 0.3);
 }
+
+.pokemon-letter-style {
+  font-family: "Pokemon Solid", sans-serif;
+  letter-spacing: 3px;
+  color: $yellow !important;
+  text-shadow: 5px 5px 2px $blue, 1px 1px 10px #000000;
+}
+
+.button-register {
+  padding: 0;
+  background-color: transparent;
+  border: none;
+}

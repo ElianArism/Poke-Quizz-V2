@@ -1,35 +1,33 @@
-<div class="bg-card"></div>
+<div class="bacgkround-card">
+  <article
+    class="register-trainer card d-flex justify-content-center m-auto rounded p-3"
+  >
+    <div class="w-75 text-center mx-auto">
+      <p class="pokemon-letter-style">Register Score</p>
+    </div>
 
-<article
-  class="register-trainer card d-flex justify-content-center w-75 m-auto rounded p-1"
->
-  <div class="w-75 text-center my-3">
-    <p>Do you want to register your score?</p>
-    <hr />
-  </div>
+    <div class="w-100">
+      <div class="my-5">
+        <input
+          type="text"
+          name="trainer-name"
+          placeholder="Trainer name"
+          class="form-input"
+        />
+      </div>
+      <div class="my-5">
+        <input
+          type="text"
+          placeholder="Password"
+          class="form-input"
+          name="trainer-password"
+        />
+      </div>
 
-  <div class="w-100">
-    <div class="mb-3">
-      <label for="trainer-name" class="form-label">Trainer Name</label
-      ><input
-        type="text"
-        name="trainer-name"
-        placeholder="Ash Ketchup"
-        class="form-control"
-      />
+      <div class="w-100 d-flex justify-content-around mt-5">
+        <button class="pokemon-letter-style button-register">Register</button>
+        <button class="pokemon-letter-style button-register">No thanks!</button>
+      </div>
     </div>
-    <div class="mb-3">
-      <label for="trainer-password" class="form-label">Password</label
-      ><input
-        type="text"
-        placeholder="password"
-        class="form-control"
-        name="trainer-password"
-      />
-    </div>
-    <div class="mb-3">
-      <label class="form-label">Logo</label
-      ><input type="text" class="form-control" />
-    </div>
-  </div>
-</article>
+  </article>
+</div>

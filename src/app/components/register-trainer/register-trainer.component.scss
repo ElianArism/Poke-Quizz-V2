@@ -1,13 +1,58 @@
-.bg-card {
-  position: fixed;
+@import "../../../assets/pallette.scss";
+
+.bacgkround-card {
   top: 0;
   bottom: 0;
-  filter: brightness(0.9), blur(0.9);
+  position: absolute;
+
+  z-index: 100;
   width: 100%;
-  z-index: 10;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+.card {
+  background: rgba(242, 242, 242, 0.7);
+  border-radius: 16px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(4.1px);
+  -webkit-backdrop-filter: blur(4.1px);
+  border: 1px solid rgba(242, 242, 242, 0.25);
 }
 
 .register-trainer {
-  position: relative;
-  z-index: 20;
+  max-width: 600px;
+  width: 80%;
+
+  & .form-text {
+    font-size: 1rem;
+  }
+
+  & .form-label,
+  & .form-text,
+  hr {
+    color: $white;
+  }
+
+  & .form-label {
+    letter-spacing: 1px;
+    margin: 0 0 5px 0 !important;
+  }
+
+  & .form-input {
+    display: flex;
+    width: 100%;
+    border: none;
+    border-bottom: 0.5px solid $white;
+    background-color: transparent;
+    color: $black;
+    outline: none;
+
+    &::placeholder {
+      color: #696969;
+      letter-spacing: 1px;
+    }
+  }
 }
