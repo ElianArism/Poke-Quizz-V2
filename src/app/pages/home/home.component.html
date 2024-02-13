@@ -28,7 +28,7 @@
           Pokémon identification skills.
         </p>
         <div class="action-buttons my-4">
-          <button routerLink="/quizz">Play</button>
+          <button (click)="startPlayGameProcess()" type="button">Play</button>
 
           <picture class="pokemon-img">
             <img src="/assets/pikachu.png" alt="Pokemon img" />
@@ -39,4 +39,6 @@
       </div>
     </div>
   </div>
+
+  <app-login-modal [openModal]="openModal"></app-login-modal>
 </section>

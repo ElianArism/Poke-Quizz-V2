@@ -1,0 +1,50 @@
+@import "../../../assets/pallette.scss";
+
+input {
+  background-color: transparent;
+  border: none;
+  & :focus {
+    outline: none;
+  }
+}
+
+.login-form {
+  width: 80%;
+  max-width: 600px;
+  height: fit-content;
+  display: flex;
+  flex-direction: column;
+  padding: 1rem !important;
+  border-radius: 10px;
+  position: fixed;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  margin: auto !important;
+  background: rgba(255, 255, 255, 0.25);
+  border-radius: 16px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(12.5px);
+  -webkit-backdrop-filter: blur(12.5px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.paraghrap-style {
+  font-size: 1rem;
+  color: $red;
+}
+
+.form-label {
+  font-size: 14px;
+  letter-spacing: 4px;
+  text-transform: capitalize;
+  font-family: "Pokemon Solid", sans-serif;
+  text-shadow: 2px 0 #fff, -2px 0 #fff, 0 2px #fff, 0 -2px #fff, 1px 1px #fff,
+    -1px -1px #fff, 1px -1px #fff, -1px 1px #fff;
+}
+
+.form-input {
+  padding: 5px 0px !important;
+  border-bottom: 1px solid $white;
+}

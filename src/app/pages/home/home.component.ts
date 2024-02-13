@@ -8,9 +8,19 @@ import { FirebaseService } from 'src/app/services/firebase.service';
 })
 export class HomeComponent implements OnInit {
   private firebaseService: FirebaseService = inject(FirebaseService);
+  openModal: boolean = true;
+
   constructor() {}
 
   ngOnInit(): void {
     console.log('On init!');
+  }
+
+  startPlayGameProcess(): void {
+    this.displayLoginModal();
+  }
+
+  private displayLoginModal(): void {
+    this.openModal = true;
   }
 }

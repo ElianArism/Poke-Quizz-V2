@@ -1,0 +1,31 @@
+<form class="login-form fade-in" *ngIf="openModal" (submit)="saveTrainer()">
+  <div class="text-center">
+    <p class="paraghrap-style my-2">Would you like to register your name?</p>
+    <p class="paraghrap-style">
+      If you register yourself and your score's in the top 10 then you'll be in
+      the ranking!
+    </p>
+  </div>
+  <div class="my-3 w-100 d-flex flex-column">
+    <label class="form-label" for="name">Name</label>
+    <input
+      class="form-input"
+      type="text"
+      name="name"
+      placeholder="Enter your name"
+    />
+  </div>
+  <div class="mb-3 w-100 d-flex flex-column">
+    <label class="form-label" for="fav-pkm-name">Favorite pokemon</label>
+    <input
+      class="form-input"
+      type="text"
+      name="fav-pkm-name"
+      placeholder="Enter the name of your favorite pokemon"
+    />
+  </div>
+  <div class="options-container">
+    <button type="button" (click)="hideLoginModal()">Cancel</button>
+    <button type="submit">Save!</button>
+  </div>
+</form>

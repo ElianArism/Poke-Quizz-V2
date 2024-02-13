@@ -32,3 +32,12 @@ a {
   -webkit-backdrop-filter: blur(5px);
   border: 1px solid rgba(255, 255, 255, 0.3);
 }
+
+.pokemon-text {
+  font-size: 1rem;
+  letter-spacing: 4px;
+  text-transform: capitalize;
+  font-family: "Pokemon Solid", sans-serif;
+  text-shadow: 2px 0 #fff, -2px 0 #fff, 0 2px #fff, 0 -2px #fff, 1px 1px #fff,
+    -1px -1px #fff, 1px -1px #fff, -1px 1px #fff, 0px 0px 1rem rgba(0, 0, 0, 1);
+}
