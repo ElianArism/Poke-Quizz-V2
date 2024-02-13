@@ -9,12 +9,15 @@ import { Store } from '@ngrx/store';
 import * as color from 'color.js';
 import { Observable } from 'rxjs';
 import { Pokemon } from 'src/app/interfaces/pokemon.interface';
+import { ITrainer } from 'src/app/interfaces/trainer.interface';
 import { PokemonApiService } from 'src/app/services/pokemon-api.service';
 import { PokemonActions } from 'src/app/store/actions/pokemon.actions';
 import { UIActions } from 'src/app/store/actions/ui.actions';
 import { AppState } from 'src/app/store/app.store';
 import { PokemonState } from 'src/app/store/reducers/pokemon.reducer';
+import { TrainerState } from 'src/app/store/reducers/trainer.reducer';
 import { pokemonsSelector } from 'src/app/store/selectors/pokemon.selector';
+import { trainerSelector } from 'src/app/store/selectors/trainer.selector';
 @Component({
   selector: 'app-quizz',
   templateUrl: './quizz.component.html',
@@ -24,25 +27,33 @@ export class QuizzComponent implements OnInit {
   private readonly store: Store<AppState> = inject(Store);
   private readonly pokemonsState: Observable<PokemonState> =
     this.store.select(pokemonsSelector);
-
+  private readonly trainerState: Observable<TrainerState> =
+    this.store.select(trainerSelector);
   private readonly pokemonService: PokemonApiService =
     inject(PokemonApiService);
 
   @ViewChild('pokemonImg')
   private pokemonImg!: ElementRef<HTMLImageElement>;
-
+  pokemonImgLoaded: boolean = false;
   prominentColor: unknown = '#333';
-  pokemonToFind!: Pokemon;
+  pokemonToFind!: Pokemon & { listIdx: number };
   pokemonsInQuizz: Pokemon[] = [];
   pokemonRevealed: boolean = false;
+  trainer!: ITrainer;
 
   ngOnInit(): void {
     this.store.dispatch(PokemonActions.startLoadingPokemons());
     this.listenPokemonStateChanges();
+    this.retrieveTrainerInformation();
+  }
+
+  private retrieveTrainerInformation(): void {
+    this.trainerState.subscribe((trainer) => (this.trainer = trainer));
   }
 
   private listenPokemonStateChanges(): void {
     this.pokemonsState.subscribe(async (state) => {
+      this.pokemonImgLoaded = false;
       if (!state.currentPokemon) return;
 
       const currentPokemonInfo = await this.pokemonService.getPokemonInfo(
@@ -55,7 +66,10 @@ export class QuizzComponent implements OnInit {
         amountLeftToDiscover: state.amountLeftToDiscover,
         pokemons: state.pokemons,
       });
-      this.pokemonToFind = currentPokemonInfo;
+      this.pokemonToFind = {
+        ...currentPokemonInfo,
+        listIdx: state.currentPokemon.listIdx,
+      };
       const idx = Math.round(Math.random() * 2);
 
       this.pokemonsInQuizz[idx] = state.currentPokemon;
@@ -69,6 +83,7 @@ export class QuizzComponent implements OnInit {
         this.pokemonsInQuizz[idx + 1] = extras.firstExtra;
         this.pokemonsInQuizz[idx + 2] = extras.secondExtra;
       }
+      // this.gameReady = true;
     });
   }
 
@@ -107,7 +122,12 @@ export class QuizzComponent implements OnInit {
 
   async chooseOption(option: string): Promise<void> {
     if (option !== this.pokemonToFind.name) return;
-
+    await this.revealPokemon();
+    this.store.dispatch(
+      PokemonActions.pokemonFounded({ id: this.pokemonToFind.id })
+    );
+  }
+  private async revealPokemon(): Promise<void> {
     const pokemonColors = await color.prominent(
       this.pokemonImg.nativeElement.src,
       {
@@ -127,5 +147,11 @@ export class QuizzComponent implements OnInit {
         bgType: 'custom',
       })
     );
+  }
+
+  nextPokemon(): void {
+    this.store.dispatch(PokemonActions.setCurrentPokemon());
+    this.pokemonRevealed = false;
+    this.prominentColor = '#333';
   }
 }

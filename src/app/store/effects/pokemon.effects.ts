@@ -3,6 +3,7 @@ import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { map, switchMap } from 'rxjs';
 import { PokemonApiService } from 'src/app/services/pokemon-api.service';
 import { PokemonActions } from '../actions/pokemon.actions';
+import { TrainerActions } from '../actions/trainer.actions';
 
 @Injectable()
 export class PokemonEffects {
@@ -28,6 +29,13 @@ export class PokemonEffects {
     this.actions$.pipe(
       ofType(PokemonActions.pokemonsLoaded),
       switchMap(async () => PokemonActions.setCurrentPokemon())
+    )
+  );
+
+  pokemonFounded$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(PokemonActions.pokemonFounded),
+      switchMap(async () => TrainerActions.increaseTrainerScore())
     )
   );
 }

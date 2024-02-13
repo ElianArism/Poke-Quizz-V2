@@ -27,15 +27,9 @@ export const pokemonReducer = createReducer(
   on(PokemonActions.setCurrentPokemon, (state) => {
     let selectedPokemon!: Pokemon & { listIdx: number };
 
-    while (true) {
-      const idx: number =
-        Math.round(Math.random() * state.amountLeftToDiscover) - 1;
-      selectedPokemon = { ...state.pokemons[idx], listIdx: idx };
-      const wasFounded = state.foundedPokemonIds.filter(
-        (id) => id === selectedPokemon.id
-      );
-      if (!wasFounded.length) break;
-    }
+    const idx: number =
+      Math.round(Math.random() * state.amountLeftToDiscover) - 1;
+    selectedPokemon = { ...state.pokemons[idx], listIdx: idx };
 
     return {
       ...state,
@@ -54,6 +48,21 @@ export const pokemonReducer = createReducer(
     return {
       ...state,
       pokemons: state.pokemons.filter((p) => p.id !== payload.id),
+    };
+  }),
+  // hice esto para poder eliminar los pokemones encontrados del array de pokemones a elegir, con esto se puede refactorizar la accion
+  // setCurrentPokemon y asi evitar hacer un filter dentro del whiile, incluso se podria evitar el bucle while,
+  // quedaria terminar el refactor y tambien crear un efecto o realizar un trigger de pokemonFounded, y una nueva accion para seleccionar
+  // el pokemon siguiente que se mostrara en el quizz
+  on(PokemonActions.pokemonFounded, (state, payload) => {
+    const pokemons = state.pokemons.filter((p) => p.id !== payload.id);
+    const foundedPokemonIds = state.foundedPokemonIds.concat([payload.id]);
+    const amountLeftToDiscover = pokemons.length;
+    return {
+      ...state,
+      pokemons,
+      foundedPokemonIds,
+      amountLeftToDiscover,
     };
   })
 );

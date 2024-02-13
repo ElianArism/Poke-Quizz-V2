@@ -15,14 +15,26 @@ p {
   min-height: 330px;
 }
 
+.continue-btn {
+  background-color: rgba(0, 0, 0, 0.1);
+  border: none;
+  outline: none;
+  padding: 10px !important;
+  border-radius: 10px;
+
+  &:hover {
+    background-color: rgba(0, 0, 0, 0.2);
+    transition: background-color 300ms;
+  }
+}
+
 .pokemon-text {
   font-size: 1rem;
-  letter-spacing: 2px;
+  letter-spacing: 4px;
   text-transform: capitalize;
   font-family: "Pokemon Solid", sans-serif;
   text-shadow: 2px 0 #fff, -2px 0 #fff, 0 2px #fff, 0 -2px #fff, 1px 1px #fff,
-    -1px -1px #fff, 1px -1px #fff, -1px 1px #fff,
-    0px 0px 1rem rgba(0, 0, 0, 0.5);
+    -1px -1px #fff, 1px -1px #fff, -1px 1px #fff, 0px 0px 1rem rgba(0, 0, 0, 1);
 }
 
 .pokemon-card {

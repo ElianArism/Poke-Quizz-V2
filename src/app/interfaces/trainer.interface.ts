@@ -1,7 +1,3 @@
-export interface ITrainer {
-  id: string;
-  imgLogo: string;
-  trainerName: string;
-  score: number;
-  password: string;
-}
+import { TrainerState } from '../store/reducers/trainer.reducer';
+
+export interface ITrainer extends TrainerState {}

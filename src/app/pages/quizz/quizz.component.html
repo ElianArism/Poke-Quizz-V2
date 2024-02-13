@@ -8,24 +8,28 @@
           <img
             *ngIf="pokemonToFind"
             [src]="pokemonToFind.sprites.front_default"
-            [class]="pokemonRevealed ? 'reveal' : 'fade-in hidden'"
+            [ngClass]="{
+              'reveal': pokemonRevealed,
+              'fade-in hidden': pokemonImgLoaded,
+            }"
+            (load)="pokemonImgLoaded = true"
             alt="Hidden pokemon"
             #pokemonImg
           />
         </picture>
       </div>
 
-      <ul class="options fade-in" *ngIf="pokemonToFind && !pokemonRevealed">
+      <ul class="options fade-in" *ngIf="pokemonImgLoaded && !pokemonRevealed">
         <li
           *ngFor="let pokemon of pokemonsInQuizz"
           class="glass-bg text-capitalize"
           (click)="chooseOption(pokemon.name)"
         >
-          {{ pokemon.name }}
+          {{ pokemon?.name }}
         </li>
       </ul>
 
-      <div>
+      <div *ngIf="pokemonToFind">
         <p
           [class.d-none]="!pokemonRevealed"
           class="pokemon-text fade-in"
@@ -33,6 +37,12 @@
         >
           It's {{ pokemonToFind.name }} !
         </p>
+      </div>
+
+      <div class="d-flex my-5 mx-auto" *ngIf="pokemonRevealed">
+        <button class="continue-btn pokemon-text" (click)="nextPokemon()">
+          Continue
+        </button>
       </div>
     </div>
   </div>
@@ -50,7 +60,7 @@
       </p>
     </div>
     <p class="pokemon-text fade-in m-0" [style]="'color:' + prominentColor">
-      Score: 10
+      Score: {{ trainer.score }}
     </p>
   </div>
 </section>

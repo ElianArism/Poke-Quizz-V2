@@ -6,5 +6,6 @@ export const TrainerActions = createActionGroup({
   events: {
     'Start loading trainer': emptyProps(),
     'Trainer loaded': props<{ trainer: ITrainer }>(),
+    'Increase Trainer Score': emptyProps(),
   },
 });

@@ -24,5 +24,8 @@ export const trainerReducer = createReducer(
       trainerName: trainer.trainerName,
       score: trainer.score,
     };
+  }),
+  on(TrainerActions.increaseTrainerScore, (state) => {
+    return { ...state, score: state.score + 1 };
   })
 );
