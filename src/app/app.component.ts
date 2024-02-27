@@ -3,12 +3,14 @@ import {
   Component,
   ElementRef,
   OnDestroy,
+  OnInit,
   Renderer2,
   ViewChild,
   inject,
 } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Subscription } from 'rxjs';
+import { PokemonActions } from './store/actions/pokemon.actions';
 import { AppState } from './store/app.store';
 import { UISelector } from './store/selectors/ui.selector';
 
@@ -17,9 +19,10 @@ import { UISelector } from './store/selectors/ui.selector';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
 })
-export class AppComponent implements AfterViewInit, OnDestroy {
+export class AppComponent implements AfterViewInit, OnInit, OnDestroy {
   @ViewChild('defaultBg')
   private defaultBg!: ElementRef<HTMLElement>;
+
   @ViewChild('pokemonDiscoveredBg')
   private pokemonDiscoveredBg!: ElementRef<HTMLElement>;
 
@@ -29,6 +32,10 @@ export class AppComponent implements AfterViewInit, OnDestroy {
   private readonly uiSelector = this.store.select(UISelector);
 
   constructor(private readonly r2: Renderer2) {}
+
+  ngOnInit(): void {
+    this.store.dispatch(PokemonActions.startLoadingPokemons());
+  }
 
   ngAfterViewInit(): void {
     this.subs = this.uiSelector.subscribe(({ backgroundColor, bgType }) => {

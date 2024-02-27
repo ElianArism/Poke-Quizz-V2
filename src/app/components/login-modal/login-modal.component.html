@@ -17,12 +17,19 @@
   </div>
   <div class="mb-3 w-100 d-flex flex-column">
     <label class="form-label" for="fav-pkm-name">Favorite pokemon</label>
-    <input
-      class="form-input"
-      type="text"
-      name="fav-pkm-name"
-      placeholder="Enter the name of your favorite pokemon"
-    />
+    <div class="input-w-select-container">
+      <input
+        class="form-input"
+        type="text"
+        name="fav-pkm-name"
+        placeholder="Enter the name of your favorite pokemon"
+      />
+      <select class="select-form">
+        <ng-container *ngFor="let p of pokemons$()">
+          <option [value]="p.url">{{ p.name }}</option>
+        </ng-container>
+      </select>
+    </div>
   </div>
   <div class="options-container">
     <button class="pokemon-text" type="button" (click)="hideLoginModal()">

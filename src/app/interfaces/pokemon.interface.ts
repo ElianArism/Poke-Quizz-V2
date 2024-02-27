@@ -1,4 +1,9 @@
+export interface PokemonItem {
+  name: string;
+  url: string;
+}
 export interface Pokemon {
+  url?: string;
   abilities: Ability2[];
   base_experience: number;
   forms: Ability[];

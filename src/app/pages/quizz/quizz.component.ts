@@ -34,6 +34,7 @@ export class QuizzComponent implements OnInit {
 
   @ViewChild('pokemonImg')
   private pokemonImg!: ElementRef<HTMLImageElement>;
+
   pokemonImgLoaded: boolean = false;
   prominentColor: unknown = '#333';
   pokemonToFind!: Pokemon & { listIdx: number };
@@ -42,7 +43,6 @@ export class QuizzComponent implements OnInit {
   trainer!: ITrainer;
 
   ngOnInit(): void {
-    this.store.dispatch(PokemonActions.startLoadingPokemons());
     this.listenPokemonStateChanges();
     this.retrieveTrainerInformation();
   }
