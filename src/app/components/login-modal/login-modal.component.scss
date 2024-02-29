@@ -83,3 +83,34 @@ input:-webkit-autofill:active {
     transition: 100ms transform;
   }
 }
+
+.searchable-dropdown {
+  display: flex;
+  position: relative;
+  width: 100%;
+
+  & .dropdown-search-input {
+    position: relative;
+    z-index: 10;
+    width: 100%;
+  }
+
+  & .dropdown-items {
+    position: absolute;
+    top: 40px;
+    left: 0;
+    background: rgba(200, 200, 200, 0.9);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(12.5px);
+    -webkit-backdrop-filter: blur(12.5px);
+    border-radius: 10px;
+    max-height: 300px;
+    overflow: scroll;
+  }
+
+  & .dropdown-item {
+    cursor: pointer;
+    padding: 5px !important;
+    border-bottom: 0.5px solid $black;
+  }
+}
