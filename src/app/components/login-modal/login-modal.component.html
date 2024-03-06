@@ -1,4 +1,9 @@
-<form class="login-form fade-in" *ngIf="openModal" (submit)="saveTrainer()">
+<form
+  class="login-form fade-in"
+  *ngIf="openModal"
+  [formGroup]="trainerForm"
+  (ngSubmit)="saveTrainer()"
+>
   <div class="text-center">
     <p class="paraghrap-style my-2">Would you like to register your name?</p>
     <p class="paraghrap-style">
@@ -7,12 +12,23 @@
     </p>
   </div>
   <div class="my-3 w-100 d-flex flex-column">
-    <label class="form-label" for="name">Name</label>
+    <label class="form-label" for="username">Username</label>
     <input
       class="form-input"
       type="text"
-      name="name"
-      placeholder="Enter your name"
+      name="username"
+      formControlName="trainerName"
+      placeholder="Enter your username"
+    />
+  </div>
+  <div class="my-3 w-100 d-flex flex-column">
+    <label class="form-label" for="password">Password</label>
+    <input
+      class="form-input"
+      formControlName="trainerPassword"
+      type="password"
+      name="password"
+      placeholder="Enter your password"
     />
   </div>
   <div class="mb-3 w-100 d-flex flex-column">
@@ -22,7 +38,7 @@
         class="form-input dropdown-search-input"
         type="text"
         name="fav-pkm-name"
-        [formControl]="selectedPokemonControl"
+        formControlName="pokemonName"
         placeholder="Enter the name of your favorite pokemon"
       />
       <ul class="dropdown-items" *ngIf="pokemonList$().length > 0">

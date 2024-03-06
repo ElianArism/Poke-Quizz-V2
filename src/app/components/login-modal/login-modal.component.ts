@@ -8,7 +8,7 @@ import {
   inject,
   signal,
 } from '@angular/core';
-import { FormControl, ReactiveFormsModule } from '@angular/forms';
+import { FormBuilder, FormControl, ReactiveFormsModule } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import { Subscription } from 'rxjs';
 import { Pokemon } from 'src/app/interfaces/pokemon.interface';
@@ -27,6 +27,7 @@ export class LoginModalComponent implements OnInit, OnDestroy {
   private readonly store: Store<AppState> = inject(Store);
   private readonly pokemonSelector = this.store.select(pokemonsSelector);
   private readonly firebaseService: FirebaseService = inject(FirebaseService);
+  private readonly fb: FormBuilder = inject(FormBuilder);
 
   private subscriptions: Subscription[] = [];
 
@@ -35,9 +36,13 @@ export class LoginModalComponent implements OnInit, OnDestroy {
 
   pokemons$: WritableSignal<Pokemon[]> = signal([]);
   pokemonList$: WritableSignal<Pokemon[]> = signal(this.pokemons$());
-  selectedPokemonControl: FormControl = new FormControl<string>('', {
-    nonNullable: true,
+  trainerForm = this.fb.nonNullable.group({
+    pokemonName: new FormControl<string>('', { nonNullable: true }),
+    trainerName: new FormControl<string>('', { nonNullable: true }),
+    trainerPassword: new FormControl<string>('', { nonNullable: true }),
   });
+
+  constructor() {}
 
   ngOnInit(): void {
     this.subscriptions.push(
@@ -47,7 +52,7 @@ export class LoginModalComponent implements OnInit, OnDestroy {
     );
 
     this.subscriptions.push(
-      this.selectedPokemonControl.valueChanges.subscribe(
+      this.trainerForm.controls['pokemonName'].valueChanges.subscribe(
         this.searchPokemon.bind(this)
       )
     );
@@ -59,6 +64,8 @@ export class LoginModalComponent implements OnInit, OnDestroy {
 
   async saveTrainer(): Promise<void> {
     // this.firebaseService.saveTrainer({});
+    // TODO: Save in store or in LS
+    // instead of db. when the game finishes then register trainer
   }
 
   searchPokemon(value: string): void {
@@ -69,13 +76,16 @@ export class LoginModalComponent implements OnInit, OnDestroy {
     this.pokemonList$.set(
       this.pokemons$().filter((p) => p.name.includes(value))
     );
-    if (this.pokemonList$()[0].name === this.selectedPokemonControl.value) {
+    if (
+      this.pokemonList$()[0].name ===
+      this.trainerForm.controls['pokemonName'].value
+    ) {
       this.pokemonList$.set([]);
     }
   }
 
   setSelectedPokemon(pokemonName: string): void {
-    this.selectedPokemonControl.setValue(pokemonName);
+    this.trainerForm.controls['pokemonName'].setValue(pokemonName);
   }
 
   ngOnDestroy(): void {
